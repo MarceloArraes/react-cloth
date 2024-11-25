@@ -228,10 +228,28 @@ export const ClothSimulation: React.FC<ClothSimulationProps> = ({
       mouseButton = e.button;
     };
 
+    const touchDown = (e: TouchEvent) => {
+      // mouse.current.button = 1; // Changed from e.which to e.button
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.touches[0].clientX - rect.left;
+      mouseY = e.touches[0].clientY - rect.top;
+      mouseDown = true;
+      mouseButton = 2;
+    };
+    const touchUp = () => (e: TouchEvent) => {
+      // mouse.current.button = 1; // Changed from e.which to e.button
+      mouseDown = false;
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouseX = e.clientX - rect.left;
       mouseY = e.clientY - rect.top;
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.touches[0].clientX - rect.left;
+      mouseY = e.touches[0].clientY - rect.top;
     };
 
     const handleMouseUp = () => {
@@ -249,19 +267,22 @@ export const ClothSimulation: React.FC<ClothSimulationProps> = ({
       requestAnimationFrame(update);
     };
 
-    canvas.addEventListener("mousedown", handleMouseDown);
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseup", handleMouseUp);
-    canvas.addEventListener("contextmenu", handleContextMenu);
+    window.addEventListener("touchstart", touchDown);
+    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchend", touchUp);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("contextmenu", handleContextMenu);
 
     update();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      canvas.removeEventListener("mousedown", handleMouseDown);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("mouseup", handleMouseUp);
-      canvas.removeEventListener("contextmenu", handleContextMenu);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("contextmenu", handleContextMenu);
     };
   }, [
     width,
