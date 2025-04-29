@@ -2,7 +2,7 @@
 
 A lightweight and interactive cloth simulation component built in React. Based on a classic JavaScript canvas simulation, this component lets you simulate realistic cloth physics with configurable properties.
 
-![react-cloth demo](https://user-images.githubusercontent.com/your-image-url/demo.gif)
+![react-cloth demo](https://raw.githubusercontent.com/MarceloArraes/react-cloth/main/Screenshot.png)
 
 ## ✨ Features
 
@@ -66,7 +66,7 @@ Want to see it in action? [View the live demo](https://www.marceloarraes.site/)
 
 To test and tweak the component locally:
 
-git clone https://github.com/your-username/react-cloth.git  
+git clone https://github.com/MarceloArraes/react-cloth.git  
 cd react-cloth  
 npm install  
 npm run dev
