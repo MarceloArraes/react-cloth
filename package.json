@@ -1,6 +1,6 @@
 {
   "name": "react-cloth",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A customizable cloth simulation component for React and Next.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
